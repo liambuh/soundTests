@@ -57,8 +57,8 @@ int main() {
   snd_pcm_hw_params_set_rate_near(handle, params,
                                   &val, &dir);
 
-  /* Set period size to 32 frames. */
-  frames = 32;
+  /* Set period size to N frames. */
+  frames = 1024;
   snd_pcm_hw_params_set_period_size_near(handle,
                               params, &frames, &dir);
 
@@ -74,7 +74,7 @@ int main() {
   /* Use a buffer large enough to hold one period */
   snd_pcm_hw_params_get_period_size(params,
                                       &frames, &dir);
-  size = frames * 4; /* 2 bytes/sample, 2 channels */
+  size = frames * 2; /* 2 bytes/sample, 1 channels */
   buffer = (char *) malloc(size);
 
   /* We want to loop for 5 seconds */
@@ -98,7 +98,7 @@ int main() {
     }
 
     int16_t *samples = (int16_t *)buffer;
-    int sample_count = frames *2; //stereo
+    int sample_count = rc; //mono
 
     int max = 0;
     for(int i = 0; i < sample_count; i++)
@@ -116,6 +116,7 @@ int main() {
 	else printf(" ");
     }
     printf("]");
+    printf("max=%d\n",max);
     fflush(stdout);
 
     rc = write(1, buffer, size);
