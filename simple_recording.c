@@ -57,7 +57,7 @@ int main() {
   snprintf(device_name, sizeof(device_name), "plughw:%d,%d", card, device);
   printf("deivce name: %s\n",device_name);
   
-  return 0;
+  //return 0;
 
   /* Open PCM device for recording (capture). */
   rc = snd_pcm_open(&handle, device_name,
