@@ -14,19 +14,26 @@ and writes to standard output for 5 seconds of data.
 
 void read_config(int *card, int *device)
 {
-	FILE *f = fopen("config.txt", "r");
-	if(!f)
-	{
-		perror("config file");
-		exit(1);
-	}
+    FILE *f = fopen("config.txt", "r");
+    if (!f) {
+        perror("config file");
+        exit(1);
+    }
 
-	char line[128];
-	
-	fscanf(f, "SOUND_CARD=%d", card);
-	fscanf(f,"DEVICE_NUM=%d", device);
+    char buf[128];
 
-	fclose(f);
+    while (fgets(buf, sizeof(buf), f)) {
+
+        if (sscanf(buf, "SOUND_CARD=%d", card) == 1) {
+            continue;
+        }
+
+        if (sscanf(buf, "DEVICE_NUM=%d", device) == 1) {
+            continue;
+        }
+    }
+
+    fclose(f);
 }
 
 int main() {
