@@ -10,12 +10,15 @@ For use, make sure you are using the correct audio device.
 Use "arecord -l" to get a list of devices.
 What you are looking for is the number of the soundcard, and the number of the device on that card.
 For example, I use Sound Card 0, Device 6 for my microphone.
-You need to identify these two numbers and change the values in the config file.Currently, this only supports mono recording at 44100Hz.
+You need to identify these two numbers and change the values in the config file.
+Currently, this only supports mono recording at 44100Hz.
 
 Compilation:
 perform the following command in your terminal:
-"bash ./compile.sh -c"
+"bash ./build.sh -c"
 
 Running:
 run the program with the following command in your terminal:
-./recorder 
+"bash ./build.sh -r"
+
+You can compile and run in the same command by using both r and c. 
