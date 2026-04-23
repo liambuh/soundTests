@@ -24,7 +24,7 @@ int main() {
   char *buffer;
 
   /* Open PCM device for recording (capture). */
-  rc = snd_pcm_open(&handle, "plug:default",
+  rc = snd_pcm_open(&handle, "plughw:0,6",
                     SND_PCM_STREAM_CAPTURE, 0);
   if (rc < 0) {
     fprintf(stderr,
@@ -98,7 +98,7 @@ int main() {
     }
 
     int16_t *samples = (int16_t *)buffer;
-    int sample_count = rc; //mono
+    int sample_count = frames; //mono
 
     int max = 0;
     for(int i = 0; i < sample_count; i++)
@@ -109,15 +109,15 @@ int main() {
     }
 
     int bar_length = (max * 50) / 32768;
-    printf("\r[");
-    for(int i = 0; i < 50; i++)
-    {
-	if (i < bar_length) printf("#");
-	else printf(" ");
-    }
-    printf("]");
-    printf("max=%d\n",max);
-    fflush(stdout);
+    //printf("\r[");
+    //for(int i = 0; i < 50; i++)
+    //{
+//	if (i < bar_length) printf("#");
+//	else printf(" ");
+  //  }
+    //printf("]");
+    //printf("max=%d\n",max);
+    //fflush(stdout);
 
     rc = write(1, buffer, size);
     if (rc != size)
