@@ -15,7 +15,7 @@ int main()
         if(rc > 0)
         {
             //process here
-            std::cout << buffer[0] << \n;
+            std::cout << buffer[0] << "\n";
         }
     }
 }
