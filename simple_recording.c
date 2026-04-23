@@ -109,17 +109,17 @@ int main() {
     }
 
     int bar_length = (max * 50) / 32768;
-    //printf("\r[");
-    //for(int i = 0; i < 50; i++)
-    //{
-//	if (i < bar_length) printf("#");
-//	else printf(" ");
-  //  }
-    //printf("]");
+    printf("\r[");
+    for(int i = 0; i < 50; i++)
+    {
+	if (i < bar_length) printf("#");
+	else printf(" ");
+    }
+    printf("]");
     //printf("max=%d\n",max);
-    //fflush(stdout);
+    fflush(stdout);
 
-    rc = write(1, buffer, size);
+    //rc = write(1, buffer, size);
     if (rc != size)
       fprintf(stderr,
               "short write: wrote %d bytes\n", rc);
