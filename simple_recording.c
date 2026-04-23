@@ -12,6 +12,23 @@ and writes to standard output for 5 seconds of data.
 
 #include <alsa/asoundlib.h>
 
+void read_config(int *card, int *device)
+{
+	FILE *f = fopen("config.txt", "r");
+	if(!f)
+	{
+		perror("config file");
+		exit(1);
+	}
+
+	char line[128];
+	
+	fscanf(f, "SOUND_CARD=%d", card);
+	fscanf(f,"DEVICE_NUM=%d", device);
+
+	fclose(f);
+}
+
 int main() {
   long loops;
   int rc;
@@ -23,8 +40,20 @@ int main() {
   snd_pcm_uframes_t frames;
   char *buffer;
 
+  //configure the device from the config file.
+  int card = 0;
+  int device = 0;
+  read_config(&card, &device);
+  printf("card = %d, dev = %d\n",card,device);
+
+  char device_name[32];
+  snprintf(device_name, sizeof(device_name), "plughw:%d,%d", card, device);
+  printf("deivce name: %s\n",device_name);
+  
+  return 0;
+
   /* Open PCM device for recording (capture). */
-  rc = snd_pcm_open(&handle, "plughw:0,6",
+  rc = snd_pcm_open(&handle, device_name,
                     SND_PCM_STREAM_CAPTURE, 0);
   if (rc < 0) {
     fprintf(stderr,
