@@ -32,7 +32,6 @@ int main()
                 bar += "#";
             }
             bar == "]";
-            std :: cout << 
 
             std::cout << bar << "\n";
         }
