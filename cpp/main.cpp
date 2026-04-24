@@ -29,9 +29,9 @@ int main()
             string bar = "[";
             for(int i = 1; i <= bar_length; i++)
             {
-                bar += "#";
+                bar = bar.append("#");
             }
-            bar == "]";
+            bar = bar.append("]");
 
             std::cout << bar << "\n";
         }
