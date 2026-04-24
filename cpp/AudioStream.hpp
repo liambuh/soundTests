@@ -14,7 +14,7 @@ class AudioStream
             handle = audio_open(device.c_str(), channels, rate);
         }
 
-        int read(int_16t* buffer)
+        int read(int16_t* buffer)
         {
             return audio_read(handle, buffer)
         }

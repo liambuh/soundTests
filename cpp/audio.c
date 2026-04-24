@@ -35,7 +35,7 @@ AudioHandle* audio_open(const char *device, int channels, int rate)
   snd_pcm_hw_params_set_channels(h->handle, params, channels); // Mono (2 for stereo)
 
   unsigned int r = rate;
-  snd_pcm_hw_params_set_rate_near(handle, params, &r, 0); //set sample rate (should be 44100)
+  snd_pcm_hw_params_set_rate_near(h->handle, params, &r, 0); //set sample rate (should be 44100)
 
   snd_pcm_uframes_t frames = 1024;
   snd_pcm_hw_params_set_period_size_near(h->handle, params, &frames, 0); //set period size
@@ -51,7 +51,7 @@ AudioHandle* audio_open(const char *device, int channels, int rate)
 
 int audio_get_frame(AudioHandle *audio)
 {
-  return audio->frame;
+  return audio->frames;
 }
 
 int audio_read(AudioHandle *audio, int16_t *buffer)
