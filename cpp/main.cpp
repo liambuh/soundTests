@@ -1,5 +1,6 @@
 #include "AudioStream.hpp"
 #include <iostream>
+#include <vector>
 
 int main()
 {
