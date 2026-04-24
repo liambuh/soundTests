@@ -1,6 +1,7 @@
 #include "AudioStream.hpp"
 #include <iostream>
 #include <vector>
+#include <string>
 
 int main()
 {
@@ -16,7 +17,24 @@ int main()
         if(rc > 0)
         {
             //process here
-            std::cout << buffer[0] << "\n";
+            int max = 0;
+            for(int i = 0; i < rc; i++)
+            {
+                int val = samples[i];
+                if(val < 0) val = -val;
+                if(val > max) max = val;
+            }
+
+            int bar_length = (max * 50) / 32768;
+            string bar = "[";
+            for(int i = 1; i <= bar_length; i++)
+            {
+                bar += "#";
+            }
+            bar == "]";
+            std :: cout << 
+
+            std::cout << bar << "\n";
         }
     }
 }
