@@ -49,6 +49,11 @@ AudioHandle* audio_open(const char *device, int channels, int rate)
   return h;
 }
 
+int audio_get_frame(AudioHandle *audio)
+{
+  return audio->frame;
+}
+
 int audio_read(AudioHandle *audio, int16_t *buffer)
 {
   return snd_pcm_readi(audio->handle, buffer, audio->frames);

@@ -21,7 +21,7 @@ class AudioStream
 
         int get_frame()
         {
-            return handle->frame;
+            return audio_get_frame(handle);
         }
 
         ~AudioStream()
