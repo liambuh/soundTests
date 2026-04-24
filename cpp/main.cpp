@@ -2,6 +2,20 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cmath>
+
+int est_rms(int16_t *buffer)
+{
+	int len = sizeof(buffer) / sizeof(buffer[0]);
+	int sum = 0;	
+	for(int i = 0; i < len; i++)
+	{
+		sum += buffer[i] * buffer[i];
+	}
+	int mean = sum / len;
+
+	return (int)sqrt(mean);
+}
 
 int main()
 {
@@ -17,15 +31,19 @@ int main()
         if(rc > 0)
         {
             //process here
+	    
             int max = 0;
+	    /*
             for(int i = 0; i < rc; i++)
             {
                 int val = buffer.data()[i];
                 if(val < 0) val = -val;
                 if(val > max) max = val;
             }
-
-            int bar_length = (max * 50) / 32768;
+	    */
+	    int rms = est_rms(buffer.data());
+            max = rms;
+	    int bar_length = (max * 50) / 32768;
             std::string bar = "[" + std::string(bar_length, '#') + "]";
 
             std::cout << bar << "\n";
