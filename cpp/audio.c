@@ -10,7 +10,9 @@ and writes to standard output for 5 seconds of data.
 /* Use the newer ALSA API */
 #define ALSA_PCM_NEW_HW_PARAMS_API
 
+#include "audio.h"
 #include <alsa/asoundlib.h>
+#include <stdlib.h>
 
 struct AudioHandle {
   snd_pcm_t *handle;
