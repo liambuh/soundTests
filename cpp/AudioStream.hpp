@@ -16,7 +16,7 @@ class AudioStream
 
         int read(int16_t* buffer)
         {
-            return audio_read(handle, buffer)
+            return audio_read(handle, buffer);
         }
 
         int get_frame()
@@ -30,4 +30,4 @@ class AudioStream
         }
     private:
         AudioHandle* handle = nullptr;
-}
+};
