@@ -19,7 +19,12 @@ int est_rms(int16_t *buffer)
 
 int main()
 {
-    AudioStream mic("plughw:0,6");
+    std::string soundcard = "0";
+    std::string devicenum = "6";
+    std::string audiodev = "plughw:"+soundcard+","+devicenum;
+    
+    AudioStream mic(audiodev);
+    
     int frame = mic.get_frame();
 
     std::vector<int16_t> buffer(frame);

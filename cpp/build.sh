@@ -2,7 +2,7 @@
 set -e
 
 NAME="main.cpp"
-OUT="prog"
+OUT="app"
 
 RUN=0
 COMPILE=0
@@ -25,11 +25,11 @@ done
 
 ##compilation
 if [[ $COMPILE -eq 1 ]]; then
-	g++ "$NAME" -lasound -o "$OUT"
+	g++ "$NAME" audio.o -lasound -o "$OUT"
 	echo "compiled"
 fi
 
 if [[ "$RUN" -eq 1 ]]; then
 	echo "running.."
-	arecord -D plughw:0,6 -f S16_LE -c 1 -r 44100 | ./$OUT
+	./$OUT
 fi
