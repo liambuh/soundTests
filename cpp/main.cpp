@@ -10,7 +10,7 @@ int main()
 
     while(true)
     {
-        int rc = mic.read(buffer, frame);
+        int rc = mic.read(buffer);
 
         if(rc > 0)
         {
