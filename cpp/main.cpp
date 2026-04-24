@@ -26,7 +26,7 @@ int main()
             }
 
             int bar_length = (max * 50) / 32768;
-            string bar = "[";
+            std::string bar = "[";
             for(int i = 1; i <= bar_length; i++)
             {
                 bar = bar.append("#");
