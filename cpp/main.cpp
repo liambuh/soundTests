@@ -6,11 +6,11 @@ int main()
     AudioStream mic("plughw:0,6");
     int frame = mic.get_frame();
 
-    int16_t buffer[frame];
+    std::vector<int16_t> buffer(frame);
 
     while(true)
     {
-        int rc = mic.read(buffer);
+        int rc = mic.read(buffer.data());
 
         if(rc > 0)
         {
