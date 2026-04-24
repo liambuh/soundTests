@@ -20,18 +20,13 @@ int main()
             int max = 0;
             for(int i = 0; i < rc; i++)
             {
-                int val = samples[i];
+                int val = buffer.data()[i];
                 if(val < 0) val = -val;
                 if(val > max) max = val;
             }
 
             int bar_length = (max * 50) / 32768;
-            std::string bar = "[";
-            for(int i = 1; i <= bar_length; i++)
-            {
-                bar = bar.append("#");
-            }
-            bar = bar.append("]");
+            std::string bar = "[" + std::string(bar_length, '#') + "]";
 
             std::cout << bar << "\n";
         }
