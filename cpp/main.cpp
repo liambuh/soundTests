@@ -163,8 +163,9 @@ int main()
             auto bars = buildLogBins(output, 50);
 
             std::cout << "\033[2J\033[H";
-            printTimeSignal(buffer);
+            
             drawSpectrum(bars);
+            printTimeSignal(buffer);
             //printFFT(output);
         }
     }
