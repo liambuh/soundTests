@@ -64,7 +64,7 @@ int main()
 
     std::vector<int16_t> buffer(frame);
 
-    Analyzer analyzer();
+    Analyzer analyzer;
 
     while(true)
     {
@@ -89,7 +89,7 @@ int main()
             std::vector<std::complex<float>> cbuffer(frame);
             for(int i = 0; i < frame; i++)
             {
-                cbuffer[i] = { buffer[i], 0.0f };
+                cbuffer[i] = ( buffer[i], 0.0f );
             }
 
             //FFT the vector:
