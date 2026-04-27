@@ -21,7 +21,7 @@ int est_rms(int16_t *buffer, int len)
 void printFFT(const std::vector<std::complex<float>>& data)
 {
     int n = data.size();
-    int numBars = 50;
+    int numBars = 20;
     int binsPerBar = (n / 2) / numBars;
 
     std::cout << "\033[2J\033[H";
