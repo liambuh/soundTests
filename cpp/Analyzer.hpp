@@ -11,7 +11,7 @@ constexpr float PI = 3.1415926535f;
 class Analyzer
 {
 	public:
-		static std::vector<std::complex<float>>* LiamFFT(const std::vector<std::complex<float>>& buffer)
+		std::vector<std::complex<float>>* LiamFFT(const std::vector<std::complex<float>>& buffer)
 		{
 			//create temp buffer for rearrangement (in-case we use a ring buffer as input)
 			std::vector<std::complex<float>> sort;
