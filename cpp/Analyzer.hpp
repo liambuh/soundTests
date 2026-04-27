@@ -55,7 +55,7 @@ class Analyzer
 			}
 		}
 
-		void SplitBuffer(const std::vector<int16_t>& input, std::vector<int16_t>& even, std::evctor<int16_t>& odd)
+		void SplitBuffer(const std::vector<int16_t>& input, std::vector<int16_t>& even, std::vector<int16_t>& odd)
 		{
 			even.clear();
 			odd.clear();
@@ -73,7 +73,7 @@ class Analyzer
 			return;
 		}
 
-		void AppendBuffers(const std::vector<int16_t>& buffer1, std::vector<int16_t>& buffer2, std::evctor<int16_t>& out)
+		void AppendBuffers(const std::vector<int16_t>& buffer1, std::vector<int16_t>& buffer2, std::vector<int16_t>& out)
 		{
 			out.clear();
 			out.reserve(buffer1.size() + buffer2.size());
