@@ -90,7 +90,7 @@ class Analyzer
 			int j = 0;
 			for(int i = 0; i < n; i++)
 			{
-				j = reservse_bits(i, log2n);
+				j = reverse_bits(i, log2n);
 
 				if (i < j)
 					std::swap(data[i], data[j]); //swap the values in i and j (bit reverse only needs to be done once)
