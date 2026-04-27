@@ -87,9 +87,10 @@ int main()
             //get complex buffer of frame:
             //really, we should load a complex buffer while we capture the sound, to save on time.
             std::vector<std::complex<float>> cbuffer(frame);
+            float w = 0.5f * (1 - cos(2 * PI * i / (frame - 1)));
             for(int i = 0; i < frame; i++)
             {
-                cbuffer[i] = ( buffer[i], 0.0f );
+                cbuffer[i] = { (float)buffer[i], 0.0f };
             }
 
             //FFT the vector:
