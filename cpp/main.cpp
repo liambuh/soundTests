@@ -83,15 +83,15 @@ void drawSpectrum(const std::vector<float>& bars)
     std::cout.flush();
 }
 
-void printTimeSignal(const std::vector<int16_t>& buffer)
+void printTimeSignal(std::vector<int16_t>& buffer)
 {
     int max = 0;
 
-    int rms = est_rms(buffer.data());
+    int rms = est_rms(buffer.data(), buffer.size());
     max = rms;
     int bar_length = (max * 50) / 32768;
     bar_length = std::min(bar_length, 50);
-    std::string bar = "[" + std::string(bar_length, '#') + "]"
+    std::string bar = "[" + std::string(bar_length, '#') + "]";
 }
 
 void printFFT(const std::vector<std::complex<float>>& data)
