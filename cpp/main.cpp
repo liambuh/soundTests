@@ -152,7 +152,7 @@ int main()
             std::vector<std::complex<float>> output = analyzer.LiamFFT(cbuffer);
 
             //render:
-            std::vector<float> bars = buildLogBins(output);
+            std::vector<float> bars = buildLogBins(output, 20);
             drawSpectrum(bars);
         }
     }
