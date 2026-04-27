@@ -18,6 +18,42 @@ int est_rms(int16_t *buffer, int len)
 	return (int)sqrt(mean);
 }
 
+std::vector<float> buildLogBins(const std::vector<std::complex<float>>& data, int numBars)
+{
+    int n = data.size();
+    int half = n / 2;
+
+    std::vector<float> bars(numBars, 0.0f);
+
+    for (int i = 0; i < numBars; i++)
+    {
+        float startFrac = std::pow((float)i / numBars, 2.0f);
+        float endFrac   = std::pow((float)(i + 1) / numBars, 2.0f);
+
+        int startBin = (int)(startFrac * half);
+        int endBin   = (int)(endFrac * half);
+
+        if (endBin <= startBin)
+            endBin = startBin + 1;
+
+        float sum = 0.0f;
+        int count = 0;
+
+        for (int j = startBin; j < endBin && j < half; j++)
+        {
+            sum += std::abs(data[j]);
+            count++;
+        }
+
+        bars[i] = (count > 0) ? sum / count : 0.0f;
+
+        bars[i] = log10(1.0f + bars[i]);
+        bars[i] /= maxValue;
+    }
+
+    return bars;
+}
+
 void drawSpectrum(const std::vector<float>& bars)
 {
     int height = 20;
@@ -117,8 +153,10 @@ int main()
 
             //FFT the vector:
             std::vector<std::complex<float>> output = analyzer.LiamFFT(cbuffer);
+            auto bars = buildLogBins(output, 50);
 
-            printFFT(output);
+            drawSpectrum(bars);
+            //printFFT(output);
         }
     }
 }
