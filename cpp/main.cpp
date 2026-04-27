@@ -66,8 +66,6 @@ void drawSpectrum(const std::vector<float>& bars)
 {
     int height = 20;
 
-    std::cout << "\033[2J\033[H";
-
     for (int row = height; row >= 0; row--)
     {
         for (float v : bars)
