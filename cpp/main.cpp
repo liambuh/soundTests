@@ -93,7 +93,7 @@ int main()
             }
 
             //FFT the vector:
-            std::vector<std::complex<float>> output = Analyzer.LiamFFT(cbuffer);
+            std::vector<std::complex<float>> output = analyzer.LiamFFT(cbuffer);
 
             printFFT(output);
         }
