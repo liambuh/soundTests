@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <complex>
 
-template <typename T>
 constexpr float PI = 3.1415926535f;
 
 class Analyzer
@@ -14,8 +13,7 @@ class Analyzer
 		std::vector<std::complex<float>>* LiamFFT(const std::vector<std::complex<float>>& buffer)
 		{
 			//create temp buffer for rearrangement (in-case we use a ring buffer as input)
-			std::vector<std::complex<float>> sort;
-			sort.insert(sort.begin(), buffer.begin(), buffer.end());
+			std::vector<std::complex<float>> sort = buffer;
 
 			BitReverseSort(sort);
 			Butterflies(sort);
@@ -25,28 +23,28 @@ class Analyzer
 
 		std::vector<std::complex<float>>* LiamIFFT(int16_t *buffer)
 		{
-			
+			return {};
 		}
 	private:
 		void Butterflies(std::vector<std::complex<float>>& data)
 		{
 			int n = data.size();
 
-			for(int l = 0; l <= n; l << 1)
+			for (int l = 2; l <= n; l <<= 1)
 			{
 				float angle = -2.0f * PI / l;
-				std::complex<float> wl(cos(angle), sing(angle)); //get period (?) of w for each step.
+				std::complex<float> wl(cos(angle), sin(angle)); //get period (?) of w for each step.
 
 				for(int i = 0; i < n; i += l)
 				{
-					std::complex<float> w(1.0f,1.0f);
+					std::complex<float> w(1.0f,0.0f);
 
 					for(int j = 0; j < l/2; j++)
 					{
 						std::complex<float> u = data[i + j];
 						std::complex<float> v = data[i + j + l/2] * w;
 
-						data[ i + j] = u + v;
+						data[i + j] = u + v;
 						data[i + j + l/2] = u - v;
 
 						w *= wl;
@@ -82,11 +80,11 @@ class Analyzer
 			out.insert(out.end(), buffer2.begin(), buffer2.end());
 		}
 
-		
+		template <typename T>
 		void BitReverseSort(std::vector<T>& data)
 		{
 			int n = data.size();
-			int log2n = std::log2(n);
+			int log2n = (int)std::log2(n);
 			int j = 0;
 			for(int i = 0; i < n; i++)
 			{
@@ -123,4 +121,4 @@ class Analyzer
 
 			return val;
 		}
-}
+};
