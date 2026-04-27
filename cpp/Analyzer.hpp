@@ -44,7 +44,7 @@ class Analyzer
 					for(int j = 0; j < l/2; j++)
 					{
 						std::complex<float> u = data[i + j];
-						std::complex<float> u = data[i + j + l/2] * w;
+						std::complex<float> v = data[i + j + l/2] * w;
 
 						data[ i + j] = u + v;
 						data[i + j + l/2] = u - v;
