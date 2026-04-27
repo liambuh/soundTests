@@ -24,7 +24,7 @@ std::vector<float> buildLogBins(const std::vector<std::complex<float>>& data, in
     int half = n / 2;
 
     std::vector<float> bars(numBars, 0.0f);
-
+    float maxValue = 0.0f;
     for (int i = 0; i < numBars; i++)
     {
         float startFrac = std::pow((float)i / numBars, 2.0f);
@@ -48,6 +48,14 @@ std::vector<float> buildLogBins(const std::vector<std::complex<float>>& data, in
         bars[i] = (count > 0) ? sum / count : 0.0f;
 
         bars[i] = log10(1.0f + bars[i]);
+
+        if(bars[i] > maxValue)
+            maxValue = bars[i];
+    }
+
+    //normalize:
+    for(int i = 0; i < numBars; i++)
+    {
         bars[i] /= maxValue;
     }
 
