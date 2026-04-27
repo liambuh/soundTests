@@ -83,13 +83,22 @@ void drawSpectrum(const std::vector<float>& bars)
     std::cout.flush();
 }
 
+void printTimeSignal(const std::vector<std::complex<float>>& data)
+{
+    int max = 0;
+
+    int rms = est_rms(buffer.data());
+    max = rms;
+    int bar_length = (max * 50) / 32768;
+    bar_length = std::min(bar_length, 50);
+    std::string bar = "[" + std::string(bar_length, '#') + "]"
+}
+
 void printFFT(const std::vector<std::complex<float>>& data)
 {
     int n = data.size();
     int numBars = 20;
     int binsPerBar = (n / 2) / numBars;
-
-    std::cout << "\033[2J\033[H";
 
     for (int i = 0; i < numBars; i++)
     {
@@ -138,17 +147,7 @@ int main()
         if(rc > 0)
         {
             //process here
-	    
-            /*
-            int max = 0;
-
-	        int rms = est_rms(buffer.data());
-            max = rms;
-	        int bar_length = (max * 50) / 32768;
-            bar_length = std::min(bar_length, 50);
-            std::string bar = "[" + std::string(bar_length, '#') + "]";
-            */
-
+            
             //get complex buffer of frame:
             //really, we should load a complex buffer while we capture the sound, to save on time.
             std::vector<std::complex<float>> cbuffer(frame);
@@ -163,6 +162,8 @@ int main()
             std::vector<std::complex<float>> output = analyzer.LiamFFT(cbuffer);
             auto bars = buildLogBins(output, 50);
 
+            std::cout << "\033[2J\033[H";
+            printTimeSignal(buffer);
             drawSpectrum(bars);
             //printFFT(output);
         }
