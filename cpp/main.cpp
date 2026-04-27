@@ -46,7 +46,7 @@ void printFFT(const std::vector<std::complex<float>>& data)
         std::cout << "|";
         for (int k = 0; k < height; k++)
             std::cout << "#";
-        std::cout << " ";
+        std::cout << " " << "\n";
     }
 
     std::cout << std::flush;
