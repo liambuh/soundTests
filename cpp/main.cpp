@@ -24,7 +24,7 @@ void printFFT(const std::vector<std::complex<float>>& data)
     int numBars = 50;
     int binsPerBar = (n / 2) / numBars;
 
-    std::cout << "\r";
+    std::cout << "\033[2J\033[H";
 
     for (int i = 0; i < numBars; i++)
     {
