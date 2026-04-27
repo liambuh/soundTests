@@ -83,7 +83,7 @@ void drawSpectrum(const std::vector<float>& bars)
     std::cout.flush();
 }
 
-void printTimeSignal(const std::vector<int16_t>& data)
+void printTimeSignal(const std::vector<int16_t>& buffer)
 {
     int max = 0;
 
