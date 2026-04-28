@@ -73,17 +73,17 @@ class Analyzer
 
 		void AppendBuffers(const std::vector<int16_t>& buffer1, std::vector<int16_t>& buffer2, const std::vector<int16_t>* out)
 		{
-			out.clear();
-			out.reserve(buffer1.size() + buffer2.size());
+			out->clear();
+			out->reserve(buffer1.size() + buffer2.size());
 
-			out.insert(out.end(), buffer1.begin(), buffer1.end());
-			out.insert(out.end(), buffer2.begin(), buffer2.end());
+			out->insert(out->end(), buffer1.begin(), buffer1.end());
+			out->insert(out->end(), buffer2.begin(), buffer2.end());
 		}
 
 		template <typename T>
 		void BitReverseSort(std::vector<T>* data)
 		{
-			int n = data.size();
+			int n = data->size();
 			int log2n = (int)std::log2(n);
 			int j = 0;
 			for(int i = 0; i < n; i++)
