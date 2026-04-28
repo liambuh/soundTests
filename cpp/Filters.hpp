@@ -17,11 +17,12 @@ class Filters
 			float rc = 0.5f;
 
 			float a = dt / (rc + dt);
+			/*
 			for(int i = 1; i < data.size(); i++)
 			{
 				data[i] = a * _data[i] + (1.0f - a) * data[i-1];
 			}
-
+			*/
 			return data;
 		}
 	private:

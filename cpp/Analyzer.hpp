@@ -28,7 +28,7 @@ class Analyzer
 	private:
 		void Butterflies(std::vector<std::complex<float>>* data)
 		{
-			int n = data.size();
+			int n = data->size();
 
 			for (int l = 2; l <= n; l <<= 1)
 			{
@@ -41,11 +41,11 @@ class Analyzer
 
 					for(int j = 0; j < l/2; j++)
 					{
-						std::complex<float> u = data[i + j];
-						std::complex<float> v = data[i + j + l/2] * w;
+						std::complex<float> u = (*data)[i + j];
+						std::complex<float> v = (*data)[i + j + l/2] * w;
 
-						data[i + j] = u + v;
-						data[i + j + l/2] = u - v;
+						(*data)[i + j] = u + v;
+						(*data)[i + j + l/2] = u - v;
 
 						w *= wl;
 					}
@@ -71,7 +71,7 @@ class Analyzer
 			return;
 		}
 
-		void AppendBuffers(const std::vector<int16_t>& buffer1, std::vector<int16_t>& buffer2, const std::vector<int16_t>* out)
+		void AppendBuffers(const std::vector<int16_t>& buffer1, const std::vector<int16_t>& buffer2, std::vector<int16_t>* out)
 		{
 			out->clear();
 			out->reserve(buffer1.size() + buffer2.size());
@@ -91,7 +91,7 @@ class Analyzer
 				j = reverse_bits(i, log2n);
 
 				if (i < j)
-					std::swap(data[i], data[j]); //swap the values in i and j (bit reverse only needs to be done once)
+					std::swap((*data)[i], (*data)[j]); //swap the values in i and j (bit reverse only needs to be done once)
 			}
 		}
 
