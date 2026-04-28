@@ -160,11 +160,11 @@ int main()
             std::vector<std::complex<float>> output = analyzer.LiamFFT(cbuffer);
             auto bars = buildLogBins(output, 50);
 
-            //std::cout << "\033[2J\033[H";
+            std::cout << "\033[2J\033[H";
             
-            //drawSpectrum(bars);
+            drawSpectrum(bars);
             //printTimeSignal(buffer);
-            //printFFT(output);
+            printFFT(output);
         }
     }
 }
