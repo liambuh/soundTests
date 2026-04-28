@@ -5,9 +5,7 @@
 #include <cstdint>
 #include <complex>
 
-constexpr float PI = 3.1415926535f;
-
-class Analyzer
+class Filters
 {
 	public:
 		static std::vector<std::complex<float>> LowPass(const std::vector<std::complex<float>>& _data)
