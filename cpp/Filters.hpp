@@ -11,7 +11,7 @@ class Filters
 		static std::vector<std::complex<float>> LowPass(const std::vector<std::complex<float>>& _data)
 		{
 			//copy to fresh vector
-			std::vector<std::complex<float>> data[_data.size()];
+			std::vector<std::complex<float>> data(_data.size());
 			
 			float dt = 0.5f;
 			float rc = 0.5f;
