@@ -175,7 +175,7 @@ int main()
             std::cout << frame << "\n";
             drawSpectrum(bars);
             //printTimeSignal(buffer);
-            printFFT(output);
+            //printFFT(output);
         }
     }
 }
