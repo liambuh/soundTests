@@ -164,7 +164,7 @@ int main()
             auto bars = buildLogBins(output, 50);
 
             std::cout << "\033[2J\033[H"; //clears terminal output and moves eader to top left
-            
+            std::cout << frame << "\n";
             drawSpectrum(bars);
             //printTimeSignal(buffer);
             printFFT(output);
