@@ -151,6 +151,7 @@ int main()
             //really, we should load a complex buffer while we capture the sound, to save on time.
             //but we are fine doing this for now, it really isn't much extra time to convert on such a small buffer.
             std::vector<std::complex<float>> cbuffer(frame);
+            std::cout << frame << "\n";
             
             for(int i = 0; i < frame; i++)
             {
