@@ -1,5 +1,6 @@
 #include "AudioStream.hpp"
 #include "Analyzer.hpp"
+#include "Filters.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -81,7 +82,7 @@ void drawSpectrum(const std::vector<float>& bars)
     std::cout.flush();
 }
 
-void printTimeSignal(std::vector<int16_t>& buffer)
+void printTimeSignal(std::vector<int16_t> buffer)
 {
     int max = 0;
 
@@ -110,10 +111,10 @@ void printFFT(const std::vector<std::complex<float>>& data)
 
         float avg = sum / binsPerBar;
 
-        // log scaling (important for audio)
+
         float scaled = std::log10(1.0f + avg);
 
-        int height = (int)(scaled * 20); // adjust 20 for taller bars
+        int height = (int)(scaled * 20);
 
         std::cout << "|";
         for (int k = 0; k < height; k++)
@@ -148,6 +149,7 @@ int main()
             
             //get complex buffer of frame:
             //really, we should load a complex buffer while we capture the sound, to save on time.
+            //but we are fine doing this for now, it really isn't much extra time to convert on such a small buffer.
             std::vector<std::complex<float>> cbuffer(frame);
             
             for(int i = 0; i < frame; i++)
@@ -160,7 +162,7 @@ int main()
             std::vector<std::complex<float>> output = analyzer.LiamFFT(cbuffer);
             auto bars = buildLogBins(output, 50);
 
-            std::cout << "\033[2J\033[H";
+            std::cout << "\033[2J\033[H"; //clears terminal output and moves eader to top left
             
             drawSpectrum(bars);
             printTimeSignal(buffer);

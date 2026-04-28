@@ -15,8 +15,8 @@ class Analyzer
 			//create temp buffer for rearrangement (in-case we use a ring buffer as input)
 			std::vector<std::complex<float>> sort = buffer;
 
-			BitReverseSort(sort);
-			Butterflies(sort);
+			BitReverseSort(&sort);
+			Butterflies(&sort);
 
 			return sort;
 		}
@@ -26,7 +26,7 @@ class Analyzer
 			return {};
 		}
 	private:
-		void Butterflies(std::vector<std::complex<float>>& data)
+		void Butterflies(std::vector<std::complex<float>>* data)
 		{
 			int n = data.size();
 
@@ -71,7 +71,7 @@ class Analyzer
 			return;
 		}
 
-		void AppendBuffers(const std::vector<int16_t>& buffer1, std::vector<int16_t>& buffer2, std::vector<int16_t>& out)
+		void AppendBuffers(const std::vector<int16_t>& buffer1, std::vector<int16_t>& buffer2, const std::vector<int16_t>* out)
 		{
 			out.clear();
 			out.reserve(buffer1.size() + buffer2.size());
@@ -81,7 +81,7 @@ class Analyzer
 		}
 
 		template <typename T>
-		void BitReverseSort(std::vector<T>& data)
+		void BitReverseSort(std::vector<T>* data)
 		{
 			int n = data.size();
 			int log2n = (int)std::log2(n);
